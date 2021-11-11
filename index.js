@@ -67,8 +67,6 @@ const caitlin = new Person ({
 
 console.log('task 1', caitlin); 
 
-//caitlin.eat(); 
-//caitlin.poop(); 
 
 
 /*
@@ -86,9 +84,29 @@ console.log('task 1', caitlin);
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+  this.model = model; 
+  this.milesPerGallon = milesPerGallon; 
+  this.tank = 0; 
+  this.odometer = 0; 
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;  
+  }
+  drive(distance){
+    const drivableMiles = this.tank * this.milesPerGallon; 
+    if(distance <= drivableMiles){
+      this.odometer = this.odometer + distance; 
+      this.tank = this.tank - (distance / this.milesPerGallon); 
+    }else{
+      this.odometer = this.odometer + drivableMiles; 
+      this.tank = 0; 
+      return `I ran out of fuel at ${this.odometer} miles!`; 
+    }  
+  }
 }
 
+console.log('task 2', Car); 
 /*
   TASK 3
     - Write a Lambdasian class.
@@ -102,6 +120,11 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor({name, age, location}){
+    this.name = name; 
+    this.age = age; 
+    this.location = location; 
+  }
   
 }
 
